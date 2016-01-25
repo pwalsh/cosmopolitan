@@ -29,6 +29,6 @@ before_script:
 #command to run the test suite
 script:
   - python manage.py test
-  - coverage run --source=world,currencies,continents manage.py test
+  - coverage run --source=cosmopolitan_countries,world,cosmopolitan_currencies,cosmopolitan_continents manage.py test
 
 after_success: coveralls

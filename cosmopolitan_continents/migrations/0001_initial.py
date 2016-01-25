@@ -11,9 +11,9 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Continent',
+            name='CosmopolitanContinent',
             fields=[
-                ('id', models.CharField(serialize=False, primary_key=True, max_length=2)),
+                ('id', models.CharField(serialize=False, max_length=2, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
                 ('geoNameId', models.PositiveIntegerField()),
             ],

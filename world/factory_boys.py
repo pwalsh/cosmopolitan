@@ -3,9 +3,9 @@ from factory.fuzzy import FuzzyText
 
 from django.contrib.gis.geos import GEOSGeometry
 
-from continents.models import Continent
-from currencies.models import Currency
-from extra_countries.models import ExtraCountry
+from cosmopolitan_continents.models import CosmopolitanContinent
+from cosmopolitan_currencies.models import CosmopolitanCurrency
+from cosmopolitan_countries.models import CosmopolitanCountry
 
 from cities.models import Country
 from cities.models import Region
@@ -41,7 +41,7 @@ class CityFactory(factory.DjangoModelFactory):
 
 class ContinentFactory(factory.DjangoModelFactory):
     class Meta:
-        model = Continent
+        model = CosmopolitanContinent
 
     id = FuzzyText(length=2)
     name = FuzzyText(length=6)
@@ -50,17 +50,17 @@ class ContinentFactory(factory.DjangoModelFactory):
 
 class CurrencyFactory(factory.DjangoModelFactory):
     class Meta:
-        model = Currency
+        model = CosmopolitanCurrency
 
     id = FuzzyText(length=2)
     name = FuzzyText(length=6)
 
 
-class ExtraCountryFactory(factory.DjangoModelFactory):
+class CosmopolitanCountryFactory(factory.DjangoModelFactory):
     class Meta:
-        model = ExtraCountry
+        model = CosmopolitanCountry
 
     id = FuzzyText(length=2)
-    country = factory.SubFactory(CountryFactory)
-    extra_continent = factory.SubFactory(ContinentFactory)
-    extra_currency = factory.SubFactory(CurrencyFactory)
+    continent = factory.SubFactory(ContinentFactory)
+    currency = factory.SubFactory(CurrencyFactory)
+    population = 1

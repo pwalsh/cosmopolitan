@@ -1,22 +1,22 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from continents.models import Continent
-from currencies.models import Currency
+from cosmopolitan_continents.models import CosmopolitanContinent
+from cosmopolitan_currencies.models import CosmopolitanCurrency
 
-from extra_countries.models import ExtraCountry
-from extra_countries.serializers import ExtraCountrySerializer
-from extra_countries.serializers import ExtraCountrySerializerShort
-from extra_countries.serializers import ContinentSerializer
-from extra_countries.serializers import ContinentDetailedSerializer
-from extra_countries.serializers import CurrencySerializer
-from extra_countries.serializers import CurrencyShortCountrySerializer
+from cosmopolitan_countries.models import CosmopolitanCountry
+from cosmopolitan_countries.serializers import CosmopolitanCountrySerializer
+from cosmopolitan_countries.serializers import CosmopolitanCountryShortSerializer
+from cosmopolitan_countries.serializers import ContinentSerializer
+from cosmopolitan_countries.serializers import ContinentDetailedSerializer
+from cosmopolitan_countries.serializers import CurrencySerializer
+from cosmopolitan_countries.serializers import CurrencyShortCountrySerializer
 
 
 class ContinentViewSet(viewsets.ReadOnlyModelViewSet):
-    model = Continent
+    model = CosmopolitanContinent
     serializer_class = ContinentSerializer
-    queryset = Continent.objects.all()
+    queryset = CosmopolitanContinent.objects.all()
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -26,12 +26,12 @@ class ContinentViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
-    model = Currency
+    model = CosmopolitanCurrency
     serializer_class = CurrencySerializer
-    queryset = Currency.objects.all()
+    queryset = CosmopolitanCurrency.objects.all()
 
     def get_queryset(self):
-        queryset = Currency.objects.all()
+        queryset = CosmopolitanCurrency.objects.all()
         countries = self.request.query_params.get('countries', None)
 
         if countries is not None:
@@ -47,29 +47,29 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(srializr.data)
 
 
-class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
-    model = ExtraCountry
-    serializer_class = ExtraCountrySerializer
-    queryset = ExtraCountry.objects.all()
+class CountryViewSet(viewsets.ReadOnlyModelViewSet):
+    model = CosmopolitanCountry
+    serializer_class = CosmopolitanCountrySerializer
+    queryset = CosmopolitanCountry.objects.all()
 
     def get_queryset(self):
-        queryset = ExtraCountry.objects.all()
+        queryset = CosmopolitanCountry.objects.all()
         continents = self.request.query_params.get('continents', None)
         if continents is not None:
             continents = continents.split(',')
-            queryset = queryset.filter(extra_continent_id__in=continents)
+            queryset = queryset.filter(continent_id__in=continents)
         return queryset
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = ExtraCountrySerializerShort(queryset,
-                                                 many=True,
-                                                 context={'request': request})
+        serializer = CosmopolitanCountryShortSerializer(queryset,
+                                                        many=True,
+                                                        context={'request': request})
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = ExtraCountrySerializer(instance,
+        serializer = CosmopolitanCountrySerializer(instance,
                                             context={'request': request})
         data = self._remove_self_from_related(serializer.data, request)
         return Response(data)

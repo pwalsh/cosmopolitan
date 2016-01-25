@@ -40,9 +40,10 @@ INSTALLED_APPS = (
     'rest_framework',
     'cities',
     'world',
-    'continents',
-    'currencies',
-    'extra_countries'
+    'cosmopolitan_continents',
+    'cosmopolitan_currencies',
+    'cosmopolitan_countries',
+    # 'django_extensions'
 )
 
 MIDDLEWARE_CLASSES = (
