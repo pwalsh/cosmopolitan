@@ -4,6 +4,7 @@ from cosmopolitan.models import Country
 from cosmopolitan.models import City
 from cosmopolitan.models import Region
 from cosmopolitan.models import Postcode
+from cosmopolitan.models import Polygon
 
 from cosmopolitan.serializers.common import CurrencySerializer
 from cosmopolitan.serializers.common import CountrySerializer
@@ -11,6 +12,7 @@ from cosmopolitan.serializers.common import ContinentSerializer
 from cosmopolitan.serializers.common import CitySerializer
 from cosmopolitan.serializers.common import RegionSerializer
 from cosmopolitan.serializers.common import PostcodeSerializer
+from cosmopolitan.serializers.common import PolygonSerializer
 
 from cosmopolitan.serializers.internal import CountryShortSerializer
 from cosmopolitan.serializers.internal import ContinentShortSerializer
@@ -18,6 +20,19 @@ from cosmopolitan.serializers.internal import CurrencyShortSerializer
 from cosmopolitan.serializers.internal import RegionShortSerializer
 
 from cosmopolitan.serializers.internal import ContinentWithRelatedSerializer
+
+
+class PolygonListSerializer(PolygonSerializer):
+    class Meta:
+        model = Polygon
+        fields = ('id', 'url', 'type', 'type_id')
+
+
+class PolygonDetailSerializer(PolygonSerializer):
+    class Meta:
+        model = Polygon
+        fields = ('id', 'url', 'type', 'type_id', 'polygon')
+
 
 class CurrencyListSerializer(CurrencySerializer):
     countries = CountryShortSerializer(many=True, read_only=True)
@@ -52,6 +67,7 @@ class ContinentDetailSerializer(ContinentSerializer):
 class CountryListSerializer(CountrySerializer):
     currency = CurrencyShortSerializer()
     continent = ContinentShortSerializer()
+
     class Meta:
         model = Country
         fields = ('id', 'url', 'name', 'continent', 'currency')

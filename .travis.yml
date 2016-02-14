@@ -4,6 +4,9 @@ python:
   - "2.7"
   - "3.5"
 
+addons:
+  postgresql: "9.4"
+
 services: postgresql
 
 env:
@@ -13,7 +16,7 @@ env:
     - PYTHONPATH="/home/travis/build/kiote/cosmopolitan"
     - PIP_USE_MIRRORS=true
   matrix:
-    - DJANGO=1.7 DB=postgresql
+    - DJANGO=1.9 DB=postgresql
 
 #commands to install dependencies
 install:
@@ -24,7 +27,7 @@ install:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql -U postgres -c "create extension postgis"
-  - python manage.py syncdb --noinput
+  - python manage.py migrate --noinput
 
 #command to run the test suite
 script:

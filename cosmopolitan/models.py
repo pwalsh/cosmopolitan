@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.contrib.postgres.fields import JSONField
 
 
 class Continent(models.Model):
@@ -58,3 +59,13 @@ class Postcode(models.Model):
     district_name = models.CharField(max_length=100, db_index=True)
 
     region = models.ForeignKey("cosmopolitan.Region", null=True, blank=True)
+
+
+class Polygon(models.Model):
+    # value generated from {type}:{id}
+    id = models.CharField(max_length=400, primary_key=True)
+    # Country or City or Region
+    type = models.CharField(max_length=50, db_index=True)
+    # id from related model
+    type_id = models.CharField(max_length=200, db_index=True)
+    polygon = JSONField(null=True)

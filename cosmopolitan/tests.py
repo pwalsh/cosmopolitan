@@ -31,3 +31,8 @@ class PostcodeTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
 class RegionTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
     base_name = 'region'
     factory_class = RegionFactory
+
+
+class PolygonTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'polygon'
+    factory_class = PolygonFactory

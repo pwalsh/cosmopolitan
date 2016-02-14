@@ -6,6 +6,7 @@ from cosmopolitan.models import Country
 from cosmopolitan.models import City
 from cosmopolitan.models import Region
 from cosmopolitan.models import Postcode
+from cosmopolitan.models import Polygon
 
 
 class CountrySerializer(serializers.HyperlinkedModelSerializer):
@@ -42,3 +43,8 @@ class PostcodeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Postcode
         fields = ('id',)
+
+
+class PolygonSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Polygon

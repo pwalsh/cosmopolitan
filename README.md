@@ -65,6 +65,10 @@ Postgres + PostGIS setup (OS X):
 
     CREATE EXTENSION postgis;
 
+If you want your user to have super privileges:
+
+    ALTER USER cosmopolitan WITH SUPERUSER;
+
 ## Starting from scratch
 
 ### Requirements

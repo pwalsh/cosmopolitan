@@ -9,6 +9,7 @@ from .models import Country
 from .models import City
 from .models import Postcode
 from .models import Region
+from .models import Polygon
 
 
 class ContinentFactory(factory.DjangoModelFactory):
@@ -66,3 +67,10 @@ class PostcodeFactory(factory.DjangoModelFactory):
     location = GEOSGeometry('POINT(5 23)')
     country = factory.SubFactory(CountryFactory)
     region = factory.SubFactory(RegionFactory)
+
+
+class PolygonFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = Polygon
+
+    id = FuzzyText(length=6)
