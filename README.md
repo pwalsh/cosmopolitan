@@ -59,3 +59,12 @@ if you just pulled this repo, you need to:
     python manage.py migrate continents zero
 
     python manage.py migrate
+    
+## License
+
+`Cosmopolitan` is opensource, licensed under a standard MIT license (included in this repository as [LICENSE](https://github.com/openspending/cosmopolitan/blob/master/LICENSE)).
+
+Data sources licensies:
+
+- [GeoNames](http://www.geonames.org/about.html) is under a creative commons attribution license.
+- [NaturalEarthData terms of use](naturalearthdata.com/about/terms-of-use/)
