@@ -41,7 +41,7 @@ Example: `GET /v1/currencies/?countries=aq`, `GET /v1/currencies/?countries=aq,a
 
 ## Running locally
 
-Under virtual env:
+Under virtual env (to create virtualenv, run `python3 -m venv env`):
 
     source env/bin/activate
 
@@ -49,17 +49,38 @@ Under virtual env:
 
     export DEBUG=1
 
+Postgres + PostGIS setup (OS X):
+
+    brew install postgis
+
+    createuser cosmopolitan
+
+    createdb cosmopolitan
+
+    psql cosmopolitan
+
+    alter user "cosmopolitan" with password '123456';
+
+    grant all privileges on database cosmopolitan to cosmopolitan;
+
+    CREATE EXTENSION postgis;
+
+If you want your user to have super privileges:
+
+    ALTER USER cosmopolitan WITH SUPERUSER;
+
 ## Starting from scratch
+
+### Requirements
+
+* [GDAL/OGR Binaries](http://trac.osgeo.org/gdal/wiki/DownloadingGdalBinaries)
 
 if you just pulled this repo, you need to:
 
-* fill in cities database with ```python manage.py cities --import=all```;
-* re-migrate all models on top with
+* migrate database: `./manage.py migrate`
 
-    python manage.py migrate continents zero
+* fill in cities database with `./manage.py cities --import=all`;
 
-    python manage.py migrate
-    
 ## License
 
 `Cosmopolitan` is opensource, licensed under a standard MIT license (included in this repository as [LICENSE](https://github.com/openspending/cosmopolitan/blob/master/LICENSE)).
