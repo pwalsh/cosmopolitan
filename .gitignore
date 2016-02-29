@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 .DS_Store
 env/
+venv2.7/
 __pycache__/
 *.py[cod]
 

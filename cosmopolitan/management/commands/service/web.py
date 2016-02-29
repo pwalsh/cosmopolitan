@@ -1,4 +1,4 @@
-from urllib import request
+import requests
 
 import cosmopolitan.management.commands.service.os as sos
 
@@ -23,7 +23,10 @@ class Webfile(object):
 
     def _retreive(self):
         try:
-            res = request.urlretrieve(self.url, self.file_name)
+            res = requests.get(self.url, steam=True)
+            with open(self.file_name, 'wb') as fd:
+                for chunk in r.iter_content(chunk_size):
+                    fd.write(chunk)
         except Exception as e:
             sos._super_log("Was about to retreive %s, but got error: %s"
                            % (self.url, str(e)))
