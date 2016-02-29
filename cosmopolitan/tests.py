@@ -1,7 +1,8 @@
 from rest_assured.testcases import BaseRESTAPITestCase
 from rest_assured.testcases import ListAPITestCaseMixin
 
-from .factory_boys import *
+from cosmopolitan.factory_boys import *
+
 
 class CountriesTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
     base_name = 'country'

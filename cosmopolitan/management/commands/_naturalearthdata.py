@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import json
 
 from cosmopolitan.models import Country
@@ -5,7 +7,7 @@ from cosmopolitan.models import City
 from cosmopolitan.models import Region
 from cosmopolitan.models import Polygon
 
-import cosmopolitan.management.commands.service.common as common
+from cosmopolitan.management.commands.service.common import prepare_data
 
 # countrise data URL
 # http://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries.zip
@@ -28,7 +30,7 @@ REGIONS = {
 
 
 def process_countries():
-    data = common.prepare_data(COUNTRIES)
+    data = prepare_data(COUNTRIES)
 
     print("\n--- Seeding countries: ---")
 
@@ -47,13 +49,13 @@ def process_countries():
         polygon.polygon = json.dumps(feature["geometry"]["coordinates"])
         polygon.save()
 
-        print(".", end="", flush=True)
+        print(".", end="")
 
     print("\nFinish.")
 
 
 def process_cities():
-    data = common.prepare_data(CITIES)
+    data = prepare_data(CITIES)
 
     print("\n--- Seeding cities: ---")
 
@@ -70,7 +72,7 @@ def process_cities():
             polygon.type_id = city.id
             polygon.polygon = json.dumps(feature["geometry"]["coordinates"])
             polygon.save()
-            print(".", end="", flush=True)
+            print(".", end="")
         except City.DoesNotExist:
             pass
 
@@ -78,7 +80,7 @@ def process_cities():
 
 
 def process_regions():
-    data = common.prepare_data(REGIONS)
+    data = prepare_data(REGIONS)
 
     print("\n--- Seeding regions: ---")
 
@@ -97,7 +99,7 @@ def process_regions():
             polygon.type_id = region.id
             polygon.polygon = json.dumps(feature["geometry"]["coordinates"])
             polygon.save()
-            print(".", end="", flush=True)
+            print(".", end="")
             saved += 1
         except (Region.DoesNotExist, Region.MultipleObjectsReturned):
             pass
