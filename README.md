@@ -13,6 +13,8 @@ Just a brief summary:
 
 * contains a list of all countries in the world with country code, country continent and list of countries on the same continent;
 * contains a list of all continents in the world with a list of countries for each continent;
+* contains a list of all regions in the world with a list of cities for each country;
+* contains a list of all cities in the world with population over 5000;
 * contains a list of all currencies in the world, each currency has a list of countries where this currency is being used.
 
 Based on https://github.com/coderholic/django-cities
@@ -39,6 +41,41 @@ Example: `GET /v1/countries/?continents=an`, `GET /v1/countries/?continents=an,a
 * `/v1/currencies/?countries={id},{id},{id}` - get currencies belongs to several countries.
 
 Example: `GET /v1/currencies/?countries=aq`, `GET /v1/currencies/?countries=aq,af`
+
+### Filter: cities by countries
+
+* `/v1/cities/?countries={id}` - get cities of the particular country;
+* `/v1/cities/?countries={id},{id},{id}` - get cities belong to several countries.
+
+Example: `GET /v1/cities/?countries=gr`, `GET /v1/cities/?countries=gr,us`
+
+### Filter: cities by regions
+
+* `/v1/cities/?regions={id}` - get cities of the particular region;
+* `/v1/cities/?regions={id},{id},{id}` - get cities belong to several regions.
+
+Example: `GET /v1/cities/?regions=tx`, `GET /v1/cities/?countries=tx,il`
+
+### Filter: cities by continents
+
+* `/v1/cities/?continents={id}` - get cities of the particular continent;
+* `/v1/cities/?continents={id},{id},{id}` - get cities belong to several continents.
+
+Example: `GET /v1/cities/?continents=eu`, `GET /v1/cities/?continents=eu,af`
+
+### Filter: cities by continents
+
+* `/v1/cities/?slugs={slug}` - get cities matching the particular slug, ;
+* `/v1/cities/?slugs={slug},{slug},{slug}` - get cities matching to several slugs.
+
+Example: `GET /v1/cities/?continents=eu`, `GET /v1/cities/?continents=eu,af`
+** where slug means the name of the city in lowercase with no accents and instead of spaces,  hyphens "-"
+
+### Filter: multiple filters
+
+You can also define multiple filters on the city endpoint.
+
+Example: `GET /v1/cities/?slugs=athens,paris&countries=us&regions=tx`
 
 ### Filter: countries polygons by countries
 

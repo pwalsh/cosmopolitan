@@ -35,9 +35,10 @@ class Region(models.Model):
 
 
 class City(models.Model):
-    id = models.CharField(max_length=200, primary_key=True)
+    id = models.CharField(max_length=200, primary_key=True) # An geoNameId now
     name = models.CharField(max_length=200, db_index=True, verbose_name="ascii name")
     name_std = models.CharField(max_length=200, db_index=True, verbose_name="standard name")
+    slug = models.CharField(max_length=200, db_index=True, null=True)
     location = models.PointField()
     population = models.IntegerField()
     region = models.ForeignKey("cosmopolitan.Region", null=True, blank=True)

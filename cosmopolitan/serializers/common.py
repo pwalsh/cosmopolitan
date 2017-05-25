@@ -30,7 +30,7 @@ class ContinentSerializer(serializers.HyperlinkedModelSerializer):
 class CitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = City
-        fields = ('id', 'url', 'name')
+        fields = ('id', 'url', 'name', 'slug')
 
 
 class RegionSerializer(serializers.HyperlinkedModelSerializer):

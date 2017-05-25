@@ -146,7 +146,7 @@ class CityListSerializer(CitySerializer):
 
     class Meta:
         model = City
-        fields = ('id', 'url', 'name', 'name_std', 'kind', 'country', 'region')
+        fields = ('id', 'url', 'name', 'name_std', 'kind', 'country', 'region', 'slug')
 
 
 class CityDetailSerializer(CitySerializer):
@@ -155,7 +155,7 @@ class CityDetailSerializer(CitySerializer):
 
     class Meta:
         model = City
-        fields = ('id', 'url', 'name', 'name_std', 'kind', 'country',
+        fields = ('id', 'slug', 'url', 'name', 'name_std', 'kind', 'country',
                   'region', 'location', 'population', 'elevation', 'timezone')
 
 

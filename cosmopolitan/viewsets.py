@@ -50,12 +50,29 @@ class CityViewSet(mixins.ListDetailSerializerMixin,
 
     def get_queryset(self):
         queryset = City.objects.all()
+        continents = self.request.query_params.get('continents', None)
+        regions = self.request.query_params.get('regions', None)
         countries = self.request.query_params.get('countries', None)
+        slugs = self.request.query_params.get('slugs', None)
+
+        if slugs is not None:
+            slugs = slugs.split(',')
+            queryset = queryset.filter(slug__in=slugs)
 
         if countries is not None:
             countries = countries.split(',')
             queryset = queryset.filter(country_id__in=countries)
+
+        if regions is not None:
+            regions = regions.split(',')
+            queryset = queryset.filter(region_id__in=regions)
+
+        if continents is not None:
+            continents = continents.split(',')
+            queryset = queryset.filter(continent_id__in=continents)
+
         return queryset
+
 
 
 class ContinentViewSet(mixins.ListDetailSerializerMixin,

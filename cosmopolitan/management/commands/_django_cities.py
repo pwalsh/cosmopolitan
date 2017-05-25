@@ -177,7 +177,8 @@ def process_cities():
         # one city with name Ak”yar has no slug, so we set it here
         if dc_city.slug == '':
             dc_city.slug = 'aky'
-        city = City(id=dc_city.slug.lower(),
+        city = City(id=dc_city.id,
+                    slug=dc_city.slug.lower(),
                     name=dc_city.name,
                     name_std=dc_city.name_std,
                     location=dc_city.location,
