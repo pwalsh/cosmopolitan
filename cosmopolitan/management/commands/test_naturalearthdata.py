@@ -18,7 +18,7 @@ mock_country_data = {"features": [
 
 mock_city_data = {"features": [
     {"properties":
-        {"GN_ASCII": "City Name"},
+        {"GEONAMEID": "734077"},
         "geometry":
             {"coordinates": "12"}}]}
 
