@@ -9,7 +9,7 @@ from cosmopolitan.models import Polygon
 
 from cosmopolitan.management.commands.service.common import prepare_data
 
-# countrise data URL
+# countries data URL
 # http://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries.zip
 
 COUNTRIES = {

@@ -23,9 +23,9 @@ class Webfile(object):
 
     def _retreive(self):
         try:
-            res = requests.get(self.url, steam=True)
+            res = requests.get(self.url, stream=True)
             with open(self.file_name, 'wb') as fd:
-                for chunk in r.iter_content(chunk_size):
+                for chunk in res.iter_content(1024 * 64):
                     fd.write(chunk)
         except Exception as e:
             sos._super_log("Was about to retreive %s, but got error: %s"
