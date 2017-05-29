@@ -62,11 +62,11 @@ def process_cities():
     Polygon.objects.filter(type='city').delete()
 
     for feature in data["features"]:
-        json_city_name = feature["properties"]["GN_ASCII"]
+        json_city_id = int(feature["properties"]["GEONAMEID"])
         try:
-            if json_city_name is None:
+            if json_city_id is None:
                 continue
-            city = City.objects.get(name=json_city_name)
+            city = City.objects.get(id=str(json_city_id))
             polygon = Polygon(id="%s:%s" % ("city", city.id))
             polygon.type = "city"
             polygon.type_id = city.id

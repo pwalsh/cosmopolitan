@@ -63,12 +63,12 @@ Example: `GET /v1/cities/?regions=tx`, `GET /v1/cities/?countries=tx,il`
 
 Example: `GET /v1/cities/?continents=eu`, `GET /v1/cities/?continents=eu,af`
 
-### Filter: cities by continents
+### Filter: cities by slug
 
 * `/v1/cities/?slugs={slug}` - get cities matching the particular slug, ;
 * `/v1/cities/?slugs={slug},{slug},{slug}` - get cities matching to several slugs.
 
-Example: `GET /v1/cities/?continents=eu`, `GET /v1/cities/?continents=eu,af`
+Example: `GET /v1/cities/?slugs=athens`, `GET /v1/cities/?slugs=athens,paris`
 ** where slug means the name of the city in lowercase with no accents and instead of spaces,  hyphens "-"
 
 ### Filter: multiple filters
