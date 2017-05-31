@@ -17,14 +17,4 @@ class Migration(migrations.Migration):
             name='slug',
             field=models.CharField(db_index=True, max_length=200, null=True),
         ),
-        migrations.AlterField(
-            model_name='polygon',
-            name='type',
-            field=models.CharField(db_index=True, max_length=50),
-        ),
-        migrations.AlterField(
-            model_name='polygon',
-            name='type_id',
-            field=models.CharField(db_index=True, max_length=200),
-        ),
     ]

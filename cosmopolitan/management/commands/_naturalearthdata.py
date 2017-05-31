@@ -64,7 +64,7 @@ def process_cities():
     for feature in data["features"]:
         json_city_id = int(feature["properties"]["GEONAMEID"])
         try:
-            if json_city_id is None:
+            if json_city_id is 0:
                 continue
             city = City.objects.get(id=str(json_city_id))
             polygon = Polygon(id="%s:%s" % ("city", city.id))
